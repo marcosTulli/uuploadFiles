@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload | We Love Kittens!</title>
+  </head>
+  <body>
+    <button id="getImage">Get Kitten IMage</button>
+    <script>
+      document.getElementById('getImage').addEventListener('click', () => {
+        fetch('tuki.jpg')
+          .then((res) => res.blob())
+          .then((data) => {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(data);
+            document.body.appendChild(img);
+          });
+      });
+    </script>
+    <!-- DOWNLOAD -->
+    <!-- <a href="tuki.jpg" target="_blank" rel="noopener noreferrer">
+      <img src="tuki.jpg" alt="tuki" width="50px" height="50px" />
+    </a> -->
+
+    <!-- BASIC TEMPLATE -->
+    <!-- <form method="post" action="/api/single-file" enctype="multipart/form-data">
+      <input type="file" name="myfile" id="myfile" /> <br />
+      <button id="submit">Submit One</button>
+    </form>
+    <br />
+    <form method="post" action="/api/multi-file" enctype="multipart/form-data">
+      <input type="file" name="myfiles" id="myfiles" multiple /> <br />
+      <button id="submit">Submit multiple</button>
+    </form> -->
+
+    <!-- MULTIPLE FILE UPLPAD -->
+
+    <!-- <form method="post" action="/api/multi-file" enctype="multipart/form-data">
+      <input type="file" name="myfile" id="myfile" multiple /> <br />
+       <button id="submitFetch">Submit with FETCH</button> -->
+    <!-- <button type="submit">Submit</button> -->
+    <!-- </form> -->
+    <!-- <button id="submitXHR">Submit with XHR</button> -->
+    <!-- <button id="submitFetch">Submit with FETCH</button>  -->
+
+    <!-- FETCH -->
+
+    <!-- <script>
+      const input = document.getElementById('myfile');
+      const img = document.querySelector('img');
+      document.getElementById('submitFetch').addEventListener('click', () => {
+        for (const f of input.files) {
+          fetch('/api/single-file', {
+            method: 'post',
+            body: f,
+          })
+            .then((res) => res.blob())
+            .then((data) => {
+              const img = document.createElement('img');
+              img.style.width = '100px';
+              img.style.height = '100px';
+              img.style.padding = '1rem';
+              img.src = URL.createObjectURL(data);
+              document.body.appendChild(img);
+            });
+        }
+      });
+    </script> -->
+
+    <!-- XHR B SHOW PROGRESS -->
+
+    <!-- <script>
+      const input = document.getElementById('myfile');
+      document.getElementById('submitXHR').addEventListener('click', () => {
+        for (const f of input.files) {
+          const xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === xhr.DONE) {
+              const img = document.createElement('img');
+              img.src = URL.createObjectURL(xhr.response);
+              document.body.appendChild(img);
+            }
+          });
+          xhr.addEventListener('progress', (e) => {
+            console.log(`Completed: ${Math.round((e.loaded / e.total) * 100)}%`);
+          });
+          xhr.open('POST', '/api/single-file');
+          xhr.send(f);
+        }
+      });
+    </script> -->
+
+    <!-- XHR A -->
+
+    <!-- <script>
+      const form = document.querySelector('form');
+      document.getElementById('submitXHR').addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/multi-file', false);
+        xhr.send(new FormData(form));
+      });
+    </script> -->
+
+    <!-- SINGLE FILE UPLOAD -->
+
+    <!-- <form method="post" action="/api/single-file" enctype="multipart/form-data">
+      <input type="file" name="myfile" id="myfile" /> <br />
+      <button type="submit">Submit</button>
+    </form> -->
+
+    <!-- <button id="submitXHR">Submit with XHR</button>
+    <button id="submitFetch">Submit with FETCH</button> -->
+    <!-- <img width="100px" height="100px" /> -->
+
+    <!-- FETCH -->
+
+    <!-- <script>
+      const input = document.getElementById('myfile');
+      const img = document.querySelector('img');
+      document.getElementById('submitFetch').addEventListener('click', () => {
+        fetch('/api/single-file', {
+          method: 'post',
+          body: input.files[0],
+        }).then((res) => {
+          res.blob().then((data) => (img.src = URL.createObjectURL(data)));
+        });
+      });
+    </script> -->
+
+    <!-- XHR B SHOW PROGRESS -->
+
+    <!-- <script>
+      const input = document.querySelector('input');
+      document.getElementById('submitXHR').addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        const img = document.querySelector('img');
+        xhr.responseType = 'blob';
+        xhr.addEventListener('readystatechange', () => {
+          if (xhr.readyState === xhr.DONE) {
+            img.src = URL.createObjectURL(xhr.response);
+          }
+        });
+        xhr.addEventListener('progress', (e) => {
+          console.log(`Completed: ${Math.round((e.loaded / e.total) * 100)}%`);
+        });
+        xhr.open('POST', '/api/single-file');
+        xhr.send(input.files[0]);
+      });
+    </script> -->
+
+    <!-- XHR A -->
+
+    <!-- <script>
+      const form = document.querySelector('form');
+      document.getElementById('submitXHR').addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/single-file', false);
+        xhr.send(new FormData(form));
+      });
+    </script> -->
+
+    <!-- REMOVE SUBMIT BUTTON -->
+
+    <!-- <script>
+      const fileTag = document.getElementById('myfile');
+      const fileName = document.getElementById('filename');
+      document.getElementById('uploadButton').addEventListener('click', () => {
+        fileTag.click();
+      });
+      fileTag.addEventListener('change', () => {
+        fileName.innerHTML = fileTag.files[0].name;
+      });
+    </script> -->
+  </body>
+</html>
